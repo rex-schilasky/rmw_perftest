@@ -1,0 +1,106 @@
+continental-hp-zbook-15-g5
+    description: Notebook
+    product: HP ZBook 15 G5 (3AX07AV)
+    vendor: HP
+    serial: 5CD851892F
+    width: 64 bits
+    capabilities: smbios-3.1.0 dmi-3.1.0 smp vsyscall32
+  *-core
+       description: Motherboard
+       product: 842A
+       vendor: HP
+       physical id: 0
+       version: KBC Version 15.3D.00
+       serial: PHMZC048JBO0KY
+     *-firmware
+          description: BIOS
+          vendor: HP
+          physical id: 1
+          version: Q70 Ver. 01.09.01
+          date: 10/17/2019
+          size: 64KiB
+          capacity: 32MiB
+          capabilities: pci pcmcia upgrade shadowing cdboot bootselect edd int5printscreen int9keyboard int14serial int17printer acpi usb smartbattery biosbootspecification netboot uefi
+     *-memory
+          description: System Memory
+          physical id: 7
+          slot: System board or motherboard
+          size: 32GiB
+        *-bank:0
+             description: SODIMM DDR4 Synchronous 2667 MHz (0.4 ns)
+             product: 8ATF1G64HZ-2G6E1
+             vendor: Micron
+             physical id: 0
+             serial: 1F14B0E7
+             slot: Top-Slot 1(left)
+             size: 8GiB
+             width: 64 bits
+             clock: 2667MHz (0.4ns)
+        *-bank:1
+             description: SODIMM DDR4 Synchronous 2667 MHz (0.4 ns)
+             product: 8ATF1G64HZ-2G6E1
+             vendor: Micron
+             physical id: 1
+             serial: 1F14B087
+             slot: Top-Slot 2(right)
+             size: 8GiB
+             width: 64 bits
+             clock: 2667MHz (0.4ns)
+        *-bank:2
+             description: SODIMM DDR4 Synchronous 2667 MHz (0.4 ns)
+             product: 8ATF1G64HZ-2G6E1
+             vendor: Micron
+             physical id: 2
+             serial: 1F149F43
+             slot: Bottom-Slot 1(left)
+             size: 8GiB
+             width: 64 bits
+             clock: 2667MHz (0.4ns)
+        *-bank:3
+             description: SODIMM DDR4 Synchronous 2667 MHz (0.4 ns)
+             product: 8ATF1G64HZ-2G6E1
+             vendor: Micron
+             physical id: 3
+             serial: 1F14B0E3
+             slot: Bottom-Slot 2(right)
+             size: 8GiB
+             width: 64 bits
+             clock: 2667MHz (0.4ns)
+     *-cache:0
+          description: L1 cache
+          physical id: 12
+          slot: L1 Cache
+          size: 384KiB
+          capacity: 384KiB
+          capabilities: synchronous internal write-back unified
+          configuration: level=1
+     *-cache:1
+          description: L2 cache
+          physical id: 13
+          slot: L2 Cache
+          size: 1536KiB
+          capacity: 1536KiB
+          capabilities: synchronous internal write-back unified
+          configuration: level=2
+     *-cache:2
+          description: L3 cache
+          physical id: 14
+          slot: L3 Cache
+          size: 9MiB
+          capacity: 9MiB
+          capabilities: synchronous internal write-back unified
+          configuration: level=3
+     *-cpu
+          description: CPU
+          product: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz
+          vendor: Intel Corp.
+          physical id: 15
+          bus info: cpu@0
+          version: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz
+          serial: To Be Filled By O.E.M.
+          slot: U3E1
+          size: 4027MHz
+          capacity: 4300MHz
+          width: 64 bits
+          clock: 100MHz
+          configuration: cores=6 enabledcores=6 threads=12
