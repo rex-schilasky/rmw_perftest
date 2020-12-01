@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source /opt/ros/foxy/setup.bash
-source ~/Documents/rmw/install/setup.bash
+source ~/Documents/rmw_ecal/install/setup.bash
 source ~/Documents/apex_ai_perf/perf_test_ws/install/local_setup.bash
 
 messages=( 'Array1k' 'Array4k' 'Array16k' 'Array32k' 'Array60k' 'Array1m' 'Array2m' 'Struct16' 'Struct256' 'Struct4k' 'Struct32k' 'PointCloud512k' 'PointCloud1m' 'PointCloud2m' 'PointCloud4m' 'Range' 'NavSatFix' 'RadarDetection' 'RadarTrack' )
@@ -29,7 +29,7 @@ do
   mkdir $msg
   cd $msg
   sleep 5
-  ros2 run performance_test perf_test --communication ROS2 --max_runtime $runtime --ignore $ignore -t test_topic -l 'log' --rate $rate -p $num_pub -s $num_sub --msg $msg
+  ros2 run performance_test perf_test --communication ROS2 --keep_last --history_depth 1 --max_runtime $runtime --ignore $ignore -t test_topic -l 'log' --rate $rate -p $num_pub -s $num_sub --msg $msg
   python3 ../../run_perfplot.py
   cd ..
 done
@@ -50,7 +50,7 @@ do
   mkdir $msg
   cd $msg
   sleep 5
-  ros2 run performance_test perf_test --communication ROS2 --max_runtime $runtime --ignore $ignore -t test_topic -l 'log' --rate $rate -p $num_pub -s $num_sub --msg $msg
+  ros2 run performance_test perf_test --communication ROS2 --keep_last --history_depth 1 --max_runtime $runtime --ignore $ignore -t test_topic -l 'log' --rate $rate -p $num_pub -s $num_sub --msg $msg
   python3 ../../run_perfplot.py
   cd ..
 done
@@ -71,7 +71,7 @@ do
   mkdir $msg
   cd $msg
   sleep 5
-  ros2 run performance_test perf_test --communication ROS2 --max_runtime $runtime --ignore $ignore -t test_topic -l 'log' --rate $rate -p $num_pub -s $num_sub --msg $msg
+  ros2 run performance_test perf_test --communication ROS2 --keep_last --history_depth 1 --max_runtime $runtime --ignore $ignore -t test_topic -l 'log' --rate $rate -p $num_pub -s $num_sub --msg $msg
   python3 ../../run_perfplot.py
   cd ..
 done
