@@ -8,17 +8,17 @@ class PointCloudPublisher : public rclcpp::Node
 {
 public:
   PointCloudPublisher()
-  : Node("pointcloud_publisher"), count_(0)
+  : Node("pointcloud_publisher")
   {
     publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("PointCloud2", 10);
-    message = sensor_msgs::msg::PointCloud2();
+    message_ = sensor_msgs::msg::PointCloud2();
 
-    FillMessage(message);
+    FillMessage(message_);
    
       auto timer_callback =
       [this]() -> void {
-        //RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-        this->publisher_->publish(this->message);
+        //RCLCPP_INFO(this->get_logger(), "Publishing");
+        this->publisher_->publish(this->message_);
       };
       
     timer_ = this->create_wall_timer(0ms, timer_callback);
@@ -72,10 +72,9 @@ public:
   }
 
 private:
-  rclcpp::TimerBase::SharedPtr timer_;
-  rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr publisher_;
-  sensor_msgs::msg::PointCloud2 message;
-  size_t count_;
+  rclcpp::TimerBase::SharedPtr                                 timer_;
+  rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr  publisher_;
+  sensor_msgs::msg::PointCloud2                                message_;
 };
 
 int main(int argc, char * argv[])
