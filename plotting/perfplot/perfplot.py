@@ -9,6 +9,7 @@ import functools
 import itertools
 import pandas
 import pprint
+import matplotlib.pyplot as plt
 
 def read_experiment_folders(rootdir):
     """Creates a nested dictionary that represents the folder structure of rootdir."""
@@ -67,15 +68,47 @@ def read_logs(exp_d, log_l = []):
             log_l.append(log_d)
     return log_l
 
-def load_logfiles(rootdir, lprefix):
+def calc_mean(log_l, lnames_l):
+    """Calculate average value of specific log value names."""
+    for d in log_l:
+        df = d['dataframe']
+        col_l = df.columns.values.tolist()
+        for val in lnames_l:
+            col_l.remove(val)
+        df = df.drop(col_l, axis=1)
+        d['dataframe'] = df.mean(axis=0)
+    return log_l
+
+def load_logfiles(rootdir, lprefix, lnames_l):
     """Load all log files and read their content."""
     exp_d = read_experiment_folders(rootdir)
     exp_d = cleanup_experiments(exp_d, lprefix)
     log_l = read_logs(exp_d)
+    log_l = calc_mean(log_l, lnames_l)
     return log_l
+
+def plot_bar(log_l, rmw_l, msg_l):
+    """Create bar plot for one run."""
+    rmw_d = {r : {m: {} for m in msg_l} for r in rmw_l}
+    for d in log_l:
+        rmw = d['header']['RMW Implementation']
+        msg = d['header']['Msg name']
+        df  = d['dataframe']
+        if rmw in rmw_l and msg in msg_l:
+            rmw_d[rmw][msg] = df[0]
+    pandas.DataFrame(rmw_d).plot(kind='bar')
+    plt.show()
 
 
 if __name__ == "__main__":
+
     exp_folder = "../../experiments/003/pub_01-sub_01-rate_0010-hist_last"
-    log_l      = load_logfiles(exp_folder, 'log')
-    pprint.pprint(log_l);
+
+    msg_l = ['Array1k','Array4k','Array16k','Array32k','Array60k','Array1m','Array2m','Struct16','Struct256','Struct4k','Struct32k','PointCloud512k','PointCloud1m','PointCloud2m','PointCloud4m','Range','NavSatFix','RadarDetection','RadarTrack']
+    
+    rmw_l = ['rmw_cyclonedds_cpp', 'rmw_fastrtps_cpp', 'rmw_ecal_dynamic_cpp']
+    lname = 'latency_mean (ms)'
+    #lname = 'ru_maxrss'
+
+    log_l = load_logfiles(exp_folder, 'log', [lname])
+    plot_bar(log_l, rmw_l, msg_l)
