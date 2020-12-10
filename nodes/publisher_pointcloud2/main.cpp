@@ -26,7 +26,7 @@ public:
 
   void FillMessage(sensor_msgs::msg::PointCloud2& msg)
   {
-    const size_t   POINTS     = 4096;
+    const size_t   POINTS     = 16384;
     const uint32_t POINT_STEP = 256;
     msg.header.frame_id = 123;
     //msg.header.stamp = 456;
