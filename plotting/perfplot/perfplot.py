@@ -102,11 +102,11 @@ def plot_bar(log_l, rmw_l, msg_l, lname_l):
 
 if __name__ == "__main__":
 
-    exp_folder = "../../experiments/003/pub_01-sub_01-rate_0010-hist_last"
+    exp_folder = "../../experiments/004/pub_01-sub_01-rate_0010-hist_last"
 
     msg_l = ['Array1k','Array4k','Array16k','Array32k','Array60k','Array1m','Array2m','Struct16','Struct256','Struct4k','Struct32k','PointCloud512k','PointCloud1m','PointCloud2m','PointCloud4m','Range','NavSatFix','RadarDetection','RadarTrack']
     
-    rmw_l   = ['rmw_cyclonedds_cpp', 'rmw_fastrtps_cpp', 'rmw_ecal_dynamic_cpp']
+    rmw_l   = ['rmw_cyclonedds_cpp', 'rmw_fastrtps_cpp']
     lname_l = ['latency_mean (ms)']
     #lname_l = ['ru_maxrss']
     #lname_l = ['cpu_usage (%)']    
